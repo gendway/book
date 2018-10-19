@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>angularjs</title>
+</head>
+<script src="js/angular.min.js"></script>
+<!--需求：使用内置对象,data.json，循环-->
+<script>
+    <!--定义一个模块-->
+    var app = angular.module('app',[]);
+    //定义控制器
+    //声明$scope对象，以便使用
+    app.controller('myController',function ($scope,$http) {
+        //创建方法
+        $scope.findAll = function () {
+
+            //使用$http内置对象发送给get请求获取data.json里面的数据
+            //相当于发送一个ajax异步请求，请求闭有响应回调数据，这个神奇了，给静态页面发送异步请求
+            $http.get('data.json').success(function (response) {
+                $scope.rep= response;
+            })
+
+            //使用返回值 作为model循环数据
+            $scope.x=3;
+        }
+    })
+
+
+</script>
+<body>
+    <!--
+        ng-init：代表初始化调用方法
+    -->
+    <div ng-app="app" ng-controller="myController" ng-init="findAll()">
+        <!--循环调用:ng-repeat-->
+        <div ng-repeat="i in rep">
+            {{i.username}}的语文得了{{i.yuwen}}这么多分{{x}}
+        </div>
+    </div>
+
+
+</body>
+</html>

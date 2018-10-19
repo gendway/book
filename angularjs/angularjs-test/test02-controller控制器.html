@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="js/angular.min.js"></script>
+<script>
+    <!--模块的定义-->
+    var app = angular.module('ngs',[]);
+    //定义控制器
+    app.controller('mycont',function ($scope) {
+        $scope.add=function () {
+            $scope.hah = parseInt($scope.x)+parseInt($scope.y)
+        }
+    })
+</script>
+<body ng-app="ngs" ng-controller="mycont">
+    x:<input ng-model="x">
+    x1:<input ng-model="y">
+    <!--return表示调用方法的返回值而已-->
+    运算结果:{{add()}}{{hah}}
+</body>
+</html>
